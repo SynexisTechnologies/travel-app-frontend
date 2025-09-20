@@ -105,7 +105,7 @@ const DestinationForm: React.FC<DestinationFormProps> = ({
         ...values,
         pending: isEditing && values.pending ? values.pending : true,
         approved: isEditing && values.approved ? values.approved : false,
-        rejected: isEditing && values.rejected ? values.rejected : false,
+        reject: isEditing && values.reject ? values.reject : false,
       };
 
       if (isEditing && destinationData?.id) {
