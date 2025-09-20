@@ -1,0 +1,1 @@
+export { useDestinations } from "./useDestinations";

@@ -1,0 +1,1 @@
+export { useEventCategories } from "./useEventCategories";
