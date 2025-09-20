@@ -73,13 +73,20 @@ const DestinationView: React.FC<DestinationViewProps> = ({
           <Descriptions.Item label="District">
             {destination.district || "N/A"}
           </Descriptions.Item>
-          <Descriptions.Item label="City">
-            {destination.city || "N/A"}
-          </Descriptions.Item>
+          {!destination.province && (
+            <Descriptions.Item label="City">
+              {destination.city || "N/A"}
+            </Descriptions.Item>
+          )}
+          {destination.province && (
+            <Descriptions.Item label="City" span={2}>
+              {destination.city || "N/A"}
+            </Descriptions.Item>
+          )}
           <Descriptions.Item label="Rating" span={2}>
             <Space>
-              <Rate disabled value={destination.rating || 0} />
-              <Text>({destination.rating?.toFixed(1) || "0.0"})</Text>
+              <Rate disabled value={Number(destination.rating) || 0} />
+              <Text>({Number(destination.rating)?.toFixed(1) || 0})</Text>
             </Space>
           </Descriptions.Item>
           <Descriptions.Item label="Status" span={2}>
@@ -128,7 +135,12 @@ const DestinationView: React.FC<DestinationViewProps> = ({
         <Descriptions title="Pricing & Details" bordered column={2}>
           <Descriptions.Item label="Ticket Price">
             {destination.ticket_price
-              ? `$${destination.ticket_price.toFixed(2)}`
+              ? `${Number(destination.ticket_price).toLocaleString("en-LK", {
+                  style: "currency",
+                  currency: "LKR",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}`
               : "Free"}
           </Descriptions.Item>
           <Descriptions.Item label="Tags">
@@ -154,7 +166,7 @@ const DestinationView: React.FC<DestinationViewProps> = ({
                 : destination.transport_method;
             })()}
           </Descriptions.Item>
-          <Descriptions.Item label="Traveler Type">
+          <Descriptions.Item label="Traveler Type" span={2}>
             {(() => {
               if (!destination.traveler_type) return "N/A";
               const travelType = additionalData?.travelTypes?.find(

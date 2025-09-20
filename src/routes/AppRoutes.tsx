@@ -9,6 +9,10 @@ import {
 } from "@/shared";
 import { Dashboard, ManageUsers, MasterData } from "@/features";
 import { ManageDestinations } from "@/features/destination";
+import { ManageNews } from "@/features/news";
+import { ManageAdvertisements } from "@/features/advertisement";
+import { ManageGallery } from "@/features/gallery";
+import { ManageTopRecommendedPlaces } from "@/features/topRecommendedPlaces";
 
 const AppRoutes = () => {
   return (
@@ -41,11 +45,11 @@ const AppRoutes = () => {
         <Route path="/guides" element={<UnderDevelopment />} />
         <Route path="/food" element={<UnderDevelopment />} />
         <Route path="/events" element={<UnderDevelopment />} />
-        <Route path="/news" element={<UnderDevelopment />} />
-        <Route path="/ads" element={<UnderDevelopment />} />
+        <Route path="/news" element={<ManageNews />} />
+        <Route path="/ads" element={<ManageAdvertisements />} />
         <Route path="/about-srilanka" element={<UnderDevelopment />} />
-        <Route path="/gallery" element={<UnderDevelopment />} />
-        <Route path="/top-places" element={<Dashboard />} />
+        <Route path="/gallery" element={<ManageGallery />} />
+        <Route path="/top-places" element={<ManageTopRecommendedPlaces />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

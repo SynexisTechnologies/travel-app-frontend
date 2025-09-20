@@ -103,7 +103,9 @@ const DestinationForm: React.FC<DestinationFormProps> = ({
       // Transform data if needed
       const formData = {
         ...values,
-        // Add any necessary transformations
+        pending: isEditing && values.pending ? values.pending : true,
+        approved: isEditing && values.approved ? values.approved : false,
+        rejected: isEditing && values.rejected ? values.rejected : false,
       };
 
       if (isEditing && destinationData?.id) {
